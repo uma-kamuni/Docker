@@ -1,4 +1,6 @@
-   # CREATE NETWORK1
+______________________________________________________________________________________________________________________________   
+# CREATE NETWORK1
+______________________________________________________________________________________________________________________________   
    docker network create mynw1
    docker network ls
 
@@ -9,8 +11,9 @@
    #CREATE CONATINER FOR BACKEND
    docker run -d -it --network mynw1 --name mybe php:alpine
    docker network inspect mynw1
-
-   #CREATE NETWORK2
+______________________________________________________________________________________________________________________________   
+#CREATE NETWORK2
+______________________________________________________________________________________________________________________________
    docker network create mynw2
    #CONNECT NETWORK TO EXISTING CONTAINER
    docker network connect mynw2 mybe
@@ -19,7 +22,7 @@
    docker run -d -it --network mynw2 --name mydb ubuntu
    docker network inspect mynw2
 
-
+______________________________________________________________________________________________________________________________
    #access frontend container myfe and test connection using ping
    #docker exec -it myfe sh
      #ifconfig
@@ -31,7 +34,16 @@
      #ping fe ip      ---> success
      #ping db ip      ---> success
    #access backend container mydb and test connection
+________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
    #docker exec -it mydb bash
      #ifconfig
      #ping fe ip      ---> cannot access
+
      #ping be ip      ---> success
