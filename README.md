@@ -1,5 +1,5 @@
 # Docker
-# INSTALL DOCKER ON UBUNTU #
+## INSTALL DOCKER ON UBUNTU #
 #sudo apt update
 # TO INSTALL REFER THIS DOC
 #https://docs.docker.com/engine/install/ubuntu/#
