@@ -1,4 +1,6 @@
+___________________________________________________________________________________________________________________________
 ##INSTALL DOCKER ON UBUNTU
+___________________________________________________________________________________________________________________________
 #sudo apt update
 ##TO INSTALL REFER THIS DOC
 #https://docs.docker.com/engine/install/ubuntu/#
@@ -6,12 +8,17 @@
 #sudo systemctl status docker
 #sudo systemctl start docker
 
+## To run without sudo add user to docker group
+#sudo usermod -aG docker ubuntu
+#newgrp docker      ---> reload group permissions ,logout and login again
+
 #docker run -d -it -p 8081:80 --name myapp nginx:latest    --> ADD PORTS TO EC2 SG
 #docker images
 #docker ps
-____________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________
 
 *****************ECR TUTORIAL (PUSH CUSTOM IMAGE TO ECR)****************************
+_____________________________________________________________________________________________________________________________
 
 FIRST WE NEED TO 2 THINGS IAM ROLE AND AWS CLI
 
@@ -54,4 +61,6 @@ DELETE ALL CONTAINERS
 #docker ps
 
 TEST ON BROWSER --->   PUBLIC IP OF EC2 : PORT
+_________________________________________________________________________________________________________________________________________________
+
 _________________________________________________________________________________________________________________
