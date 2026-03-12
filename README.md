@@ -1,4 +1,4 @@
-# Docker
+# DOCKER
 ## INSTALL DOCKER ON UBUNTU #
 #sudo apt update
 ## TO INSTALL REFER THIS DOC
