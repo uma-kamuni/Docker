@@ -1,14 +1,15 @@
+***************************************************DOCKER NETWORK TUTORIAL*************************************************
 ______________________________________________________________________________________________________________________________   
 # CREATE NETWORK1
 ______________________________________________________________________________________________________________________________   
    docker network create mynw1
    docker network ls
 
-   #CREATE CONATINER FOR FRONTEND
+   1)CREATE CONATINER FOR FRONTEND
    docker run -d -it -P --network mynw1 --name myfe nginx:alpine
    docker network inspect mynw1
 
-   #CREATE CONATINER FOR BACKEND
+   2)CREATE CONATINER FOR BACKEND
    docker run -d -it --network mynw1 --name mybe php:alpine
    docker network inspect mynw1
 ______________________________________________________________________________________________________________________________   
@@ -18,32 +19,28 @@ ________________________________________________________________________________
    #CONNECT NETWORK TO EXISTING CONTAINER
    docker network connect mynw2 mybe
 
-   #CREATE CONATINER FOR DATABASE
+   3)CREATE CONATINER FOR DATABASE
    docker run -d -it --network mynw2 --name mydb ubuntu
    docker network inspect mynw2
 
 ______________________________________________________________________________________________________________________________
+
    #access frontend container myfe and test connection using ping
    #docker exec -it myfe sh
      #ifconfig
      #ping be ip      ---> success
      #ping db ip      ---> cannot access
+
    #access backend container mybe and test connection
    #docker exec -it mybe sh
      #ifconfig
      #ping fe ip      ---> success
      #ping db ip      ---> success
    #access backend container mydb and test connection
-________________________________________________________________________________________________________________________________
-
-
-
-
-
-
-
    #docker exec -it mydb bash
      #ifconfig
      #ping fe ip      ---> cannot access
-
      #ping be ip      ---> success
+
+__________________________________________________________________________________________________________________________________
+
