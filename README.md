@@ -9,4 +9,5 @@
 
 # To run without sudo add user to docker group
 #sudo usermod -aG docker ubuntu
+
 #newgrp docker      ---> reload group permissions ,logout and login again
