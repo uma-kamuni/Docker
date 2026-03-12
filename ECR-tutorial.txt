@@ -1,0 +1,57 @@
+##INSTALL DOCKER ON UBUNTU
+#sudo apt update
+##TO INSTALL REFER THIS DOC
+#https://docs.docker.com/engine/install/ubuntu/#
+
+#sudo systemctl status docker
+#sudo systemctl start docker
+
+#docker run -d -it -p 8081:80 --name myapp nginx:latest    --> ADD PORTS TO EC2 SG
+#docker images
+#docker ps
+____________________________________________________________________________________________
+
+*****************ECR TUTORIAL (PUSH CUSTOM IMAGE TO ECR)****************************
+
+FIRST WE NEED TO 2 THINGS IAM ROLE AND AWS CLI
+
+1)CREATE A ROLE TO GIVE ACCESS FROM EC2 TO ECR
+GO TO --> IAM --> CREATE IAM ROLE--> ATTACH POLICY --> EC2ContainerRegistryFullAccess
+
+2)INSTALL AWS CLI IN EC2
+#sudo snap install aws-cli --classic
+
+##CREATE IMAGE FROM EXISTING CONTAINER
+#docker commit myapp nginx:v1
+#docker images
+
+### GO TO ECR SERVICE IN AWS
+CREATE REGISTRY--> NAME: test/app ---> CREATE
+CLICK ON --> VIEW PUSH CODE ( IT GIVES 4 STEPS)
+
+1) AUTHENTICATE TO CONNECT TO ECR FROM EC2
+#aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 581790375070.dkr.ecr.us-east-1.amazonaws.com
+2) BUILD IMAGE ( AS WE ALREADY CREATED CUSTOM IAMGE USING docker commit WE DONT NEED TO USE BUILD COMMAND)
+3)GIVE TAG TO A IMAGE SO YOU CAN PUSH TO ECR REPOSITORY
+#docker tag nginx:v1 581790375070.dkr.ecr.us-east-1.amazonaws.com/test/app:v1
+4)PUSH TO ECR REPO
+#docker push 581790375070.dkr.ecr.us-east-1.amazonaws.com/test/app:v1
+#docker ps
+#docker port myapp
+
+
+# CHECK ON ECR REP IT GIVES (URI) AND IT CAN BE SHRED WITH OTHER USER
+TO TEST ON THE SAME MACHINE
+
+DELETE ALL THE IMAGES
+#docker rmi -f $(docker images -q)
+
+DELETE ALL CONTAINERS
+#docker rm -f $(docker ps -aq)
+
+#docker pull <URI from ECR>
+#docker run -d -it -P --name newtestapp <imagename_ECR>    --> -P assign random port
+#docker ps
+
+TEST ON BROWSER --->   PUBLIC IP OF EC2 : PORT
+_________________________________________________________________________________________________________________
