@@ -43,4 +43,13 @@ ________________________________________________________________________________
      #ping be ip      ---> success
 
 __________________________________________________________________________________________________________________________________
+#Now delete all the networks
+Before that disconnect all the containers from the network
+# docker network disconnect myfe mybe
+#docker network rm mynw1
+#docker network disconnect mydb
+#docker network rm mynw2
+___________________________________________________________________________________________________________________________________
+
+
 
