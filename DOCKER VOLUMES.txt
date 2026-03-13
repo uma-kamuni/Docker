@@ -1,0 +1,45 @@
+DOCKER VOLUMES
+1)MOUNT VOLUME
+#CREATE A VOLUME
+#docker volume create vol1
+
+#CREATE A CONTAINER AND ATTACH VOLUME
+#docker run -d -it -p 8081:80 -v vol1:/usr/share/nginx/html/ --name myapp nginx:latest
+#docker inspect myapp   --> check in mount section source path
+
+switch to root user
+sudo su
+#cd /var/lib/docker/volumes/vol1/_data
+#ls
+#vim index.html  --> edit data in index file
+
+#NOW LOGIN TO CONTAINR TO CHECK IF CHANGES ARE REFLECTED OR NOT
+#docker exec -it myapp bash
+# cd /usr/share/nginx/html/
+#cat index.html
+
+
+NOW TO TEST CHECK ON BROWSER : PUB_IP:8081
+___________________________________________________________________________________
+
+2) BIND MOUNT
+___________________________________________________________________________________
+#NOW CREATE A FOLDER TO BIND
+#mkdir mydir
+#CREATE A CONTAINER BIND MOUNT THAT FOLDER
+#docker run -d -it -p 8081:80 -v ./mydir:/opt --name myapp2 nginx:latest
+#docker run -d -it -p 8082:80 -v ./mydir:/opt --name myapp2 nginx:latest
+#docker ps
+#docker ps -a
+#docker rm myapp2
+#docker run -d -it -p 8082:80 -v ./mydir:/opt --name myapp2 nginx:latest
+
+#NOW CREATE A FILE IN /mydir FOLDER
+#cd mydir/
+#touch a_file_in_mydir.txt
+
+#NOW TO CHECK CHANGES ARE REFLECTED OR NOT LOGIN TO CONTAINER
+#docker exec -it myapp2 bash
+#cd /opt
+#ls
+________________________________________________________________-
